@@ -1,0 +1,74 @@
+[33mcommit 5a79bbf9f8d68440e7d3d5b4a601f3d1bb6dfa00[m
+Author: David McHale <dmchale92@gmail.com>
+Date:   Mon Nov 28 10:14:42 2016 -0500
+
+    Initial commit of Fibonacci solving utility with tests
+
+[1mdiff --git a/Fibonacci-15-Even.py b/Fibonacci-15-Even.py[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4eb4e9f[m
+[1m--- /dev/null[m
+[1m+++ b/Fibonacci-15-Even.py[m
+[36m@@ -0,0 +1,62 @@[m
+[32m+[m[32m"""[m
+[32m+[m[32mGenerate a range of fibonacci numbers and pull the first 15 even Fibonacci numbers into evenFib.[m
+[32m+[m[32mEvery third number is even so generate the first 45 terms. The 45th term is 1,134,903,170.[m
+[32m+[m[32m"""[m
+[32m+[m
+[32m+[m
+[32m+[m[32mclass FibonacciSolver(object):[m
+[32m+[m[32m    def __init__(self):[m
+[32m+[m[32m        pass[m
+[32m+[m
+[32m+[m[32m    def __call__(self, *args, **kwargs):[m
+[32m+[m[32m        print("[Fibonacci-15-Even.py]-[TEST] - Running Unit Tests...")[m
+[32m+[m[32m        self.test_even_terms_for_range()[m
+[32m+[m[32m        print('[Fibonacci-15-Even.py]-[TEST] - Unit Tests completed...')[m
+[32m+[m[32m        return True[m
+[32m+[m
+[32m+[m[32m    @staticmethod[m
+[32m+[m[32m    def f():[m
+[32m+[m[32m        a, b = 0, 1[m
+[32m+[m[32m        yield a[m
+[32m+[m[32m        yield b[m
+[32m+[m[32m        while True:[m
+[32m+[m[32m            a, b = b, a + b[m
+[32m+[m[32m            yield b[m
+[32m+[m
+[32m+[m[32m    def sub_fib(self, start_number=1, end_number=10):[m
+[32m+[m[32m        for cur in self.f():[m
+[32m+[m[32m            if cur > end_number:[m
+[32m+[m[32m                return[m
+[32m+[m[32m            if cur >= start_number:[m
+[32m+[m[32m                yield cur[m
+[32m+[m
+[32m+[m[32m    def even_terms_for_range(self, start_number=1, end_number=10):[m
+[32m+[m[32m        all_fib = self.sub_fib(start_number, end_number)[m
+[32m+[m[32m        even_fib = [][m
+[32m+[m
+[32m+[m[32m        for i in all_fib:[m
+[32m+[m[32m            if len(even_fib) == 15:[m
+[32m+[m[32m                break[m
+[32m+[m[32m            if i % 2 == 0:[m
+[32m+[m[32m                even_fib.append(i)[m
+[32m+[m[32m            else:[m
+[32m+[m[32m                continue[m
+[32m+[m[32m        return even_fib[m
+[32m+[m
+[32m+[m[32m    def test_even_terms_for_range(self):[m
+[32m+[m[32m        first_two_even_terms = [2, 8][m
+[32m+[m[32m        get_terms = (self.even_terms_for_range(1, 10))[m
+[32m+[m[32m        try:[m
+[32m+[m[32m            assert get_terms == first_two_even_terms[m
+[32m+[m[32m            print('[Fibonacci-15-Even.py]-[TEST] - [test_even_terms_for_range] - PASS')[m
+[32m+[m[32m            return True[m
+[32m+[m[32m        except Exception as e:[m
+[32m+[m[32m            print("[Fibonacci-15-Even.py]-[TEST] - [test_even_terms_for_range] - FAIL: " + str(e))[m
+[32m+[m[32m            return False[m
+[32m+[m
+[32m+[m[32mif __name__ == '__main__':[m
+[32m+[m[32m    """[m
+[32m+[m[32m        Instantiate FibonacciSolver() and run built-in unit tests[m
+[32m+[m[32m    """[m
+[32m+[m[32m    fs = FibonacciSolver()[m
+[32m+[m[32m    fs()[m
